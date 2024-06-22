@@ -1,0 +1,123 @@
+#include<bits/stdc++.h>
+using namespace std;
+class person
+{
+    public:
+    string name;
+    int age;
+    person()
+    {
+        cout<<"I am a constructor of class person and i executes first always"<<endl;
+        name="";
+        age=0;
+    }
+    person(string name,int age)
+    {
+        this->name=name;
+        this->age=age;
+    }
+};
+
+class student_roll:public person
+{
+public:
+student_roll()
+{
+    cout<<"I am the constructor of class student_roll number and i executes in second numebr"<<endl;
+    roll=0;
+}
+int roll;
+student_roll(int roll)
+{
+    this->roll=roll;
+}
+student_roll(string name,int age,int roll):person(name,age),roll(roll) {}
+};
+
+class student_subject:public student_roll
+{
+    public:
+    string sub_name;
+    student_subject()
+    {
+        cout<<"I am the constructor of class student_subject number and i executes in third numebr"<<endl;
+        sub_name="";
+    }
+    student_subject(string sub_name)
+    {
+        this->sub_name=sub_name;
+    }
+    student_subject(string name,int age,int roll,string sub_name):student_roll(name,age,roll),sub_name(sub_name) {}
+};
+
+class student_department:public student_subject
+{
+ public:
+ string department;
+ student_department()
+ {
+    cout<<"I am the constructor of class student_department number and i executes in fourth numebr"<<endl;
+    department="";
+ }
+ student_department(string department)
+ {
+    this->department=department;
+ }
+ student_department(string name,int age,int roll,string sub_name,string department):student_subject(name,age,roll,sub_name),department(department) {}
+};
+
+class student_father:public student_department
+{
+ public:
+ string father_name;
+ student_father()
+ {
+    cout<<"I am the constructor of class student_father number and i executes in fifth numebr"<<endl;
+    father_name="";
+ }
+ student_father(string father_name)
+ {
+    this->father_name=father_name;
+ }
+ student_father(string name,int age,int roll,string sub_name,string department,string father_name):student_department(name,age,roll,sub_name,department),father_name(father_name) {}
+};
+
+class student_mother:public student_father
+{
+public:
+string mother_name;
+student_mother()
+{
+    cout<<"I am the constructor of class student_mother number and i executes in sixth numebr"<<endl;
+    mother_name="";
+}
+student_mother(string mother_name)
+{
+    this->mother_name=mother_name;
+}
+student_mother(string name,int age,int roll,string sub_name,string department,string father_name,string mother_name):student_father(name,age,roll,sub_name,department,father_name),mother_name(mother_name) {}
+void get_info()
+{
+    cout<<"Name:"<<name<<endl;
+    cout<<"Age:"<<age<<endl;
+    cout<<"Roll number"<<roll<<endl;
+    cout<<"Subject Name"<<sub_name<<endl;
+    cout<<"Department Name"<<department<<endl;
+    cout<<"Father's Name"<<father_name<<endl;
+    cout<<"Mother's Name"<<mother_name<<endl;
+}
+};
+
+int main()
+{
+    student_mother student1;
+    student1.name="Aryan";
+    student1.age=23;
+    student1.roll=12;
+    student1.sub_name="C++";
+    student1.department="Computer Science";
+    student1.father_name="Mahendra Singh Bisht";
+    student1.mother_name="Sangita Bisht";
+    student1.get_info();
+    return 0;
+}
